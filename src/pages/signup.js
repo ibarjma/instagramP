@@ -27,7 +27,7 @@ export default function SignUp() {
           .auth()
           .createUserWithEmailAndPassword(emailAddress, password);
 
-        await createdUserResult.createdUserResult.user.updateProfile({
+        await createdUserResult.user.updateProfile({
           displayName: username
         });
 
@@ -35,7 +35,7 @@ export default function SignUp() {
         await firebase.firestore().collection('users').add({
           // user uid sacado del auth
           userID: createdUserResult.user.uid,
-          username: username.toLowerCase,
+          username: username.toLowerCase(),
           fullName,
           emailAddress: emailAddress.toLowerCase(),
           following: [],
